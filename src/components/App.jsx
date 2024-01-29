@@ -40,13 +40,15 @@ async componentDidUpdate(prevProps, prevState) {
 				page: this.state.page,
 				per_page: 12,
 			};
-			const initialImages = await getImages(initialParams);
+
+			const initialImages = await getImages(initialParams.q);
 			if (initialImages.total === 0) {
 				toast.error(
 					'Sorry, there are no images matching your search query. Please try again.'
 				);
 				return;
-			} else {
+			}
+			 else {
 				this.setState(prevState => ({
 					images: [...prevState.images, ...initialImages.hits],
 					totalImages: initialImages.totalHits,
@@ -117,12 +119,12 @@ handleLoadMore = () => {
 // };
 // };
 
-// handleSearchSubmit = query => {
-// 	if (this.state.query === query) {
-// 	return;
-// }
-// 		this.setState({ query: query, page: 1, images: [], error: null, isLastPage: false });
-// };
+handleSearchSubmit = query => {
+	if (this.state.query === query) {
+	return;
+}
+		this.setState({ query: query, page: 1, images: [], error: null, isLastPage: false });
+};
 
 // handleImageClick = image => {
 // 	this.setState({ selectedImage: image, showModal: true });
