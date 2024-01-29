@@ -10,3 +10,4 @@ export const getImages = async (query, page) => {
 );
 	return response.data;
 };
+
