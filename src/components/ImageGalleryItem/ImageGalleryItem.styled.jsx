@@ -12,8 +12,8 @@ export const ImageGalleryItemImage = styled.img`
 		height: 260px;
 		object-fit: cover;
 		transition: all 200ms linear;
-			&:hover {
+			/* &:hover {
 			transform: scale(2);
 			cursor: zoom-in;
-}
+} */
 `

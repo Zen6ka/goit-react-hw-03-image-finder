@@ -41,7 +41,7 @@ async componentDidUpdate(prevProps, prevState) {
 				per_page: 12,
 			};
 
-			const initialImages = await getImages(initialParams.q);
+			const initialImages = await getImages(initialParams.q, initialParams.page);
 			if (initialImages.total === 0) {
 				toast.error(
 					'Sorry, there are no images matching your search query. Please try again.'
@@ -126,15 +126,15 @@ handleSearchSubmit = query => {
 		this.setState({ query: query, page: 1, images: [], error: null, isLastPage: false });
 };
 
-// handleImageClick = image => {
-// 	this.setState({ selectedImage: image, showModal: true });
-// 	document.body.style.overflow = 'hidden';
-// };
+handleImageClick = image => {
+	this.setState({ selectedImage: image, showModal: true });
+	document.body.style.overflow = 'hidden';
+};
 
-// handleModalClose = () => {
-// 	this.setState({ selectedImage: null, showModal: false });
-// 	document.body.style.overflow = 'auto';
-// };
+handleModalClose = () => {
+	this.setState({ selectedImage: null, showModal: false });
+	document.body.style.overflow = 'auto';
+};
 
 render() {
 	const { images, isLoading, error, showModal, selectedImage, isLastPage } = this.state;
@@ -154,7 +154,7 @@ return (
 						{isLoading && <Loader />}
 
 						{!isLoading && images.length > 0 && !isLastPage && (
-							<Button onClick={this.fetchImages} />
+							<Button onClick={this.handleLoadMore} />
 )}
 						{showModal && (
 						<Modal image={selectedImage} onClose={this.handleModalClose} />
